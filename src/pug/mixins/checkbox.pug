@@ -1,0 +1,18 @@
+mixin checkbox(params)
+	-
+		var defaultValues = {
+			label: undefined,
+			name: undefined,
+			inputId: undefined,
+			labelId: undefined,
+			labelFor: undefined,
+			forIdLabel: undefined
+		};
+		var config = Object.assign({}, defaultValues, params);
+		var idInput = config.id || config.forIdLabel;
+		var labelFor = config.labelFor || config.forIdLabel;
+		var label = config.label || config.forIdLabel;
+	.checkbox
+		input.checkbox__input(type="checkbox" name=config.name id=idInput)
+		label.checkbox__label(for=labelFor)
+			| #{label}

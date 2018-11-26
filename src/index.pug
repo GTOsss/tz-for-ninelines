@@ -1,0 +1,60 @@
+extends pug/base
+include pug/mixins/input
+include pug/mixins/checkbox
+
+append vars
+	-
+		var title = 'Тестовое задание';
+		var description = 'Демонстрацию навыков верстки и javascript';
+		meta.themeColor = '#b4b4b4';
+
+block content
+	-
+		var checkboxes = [
+			'html5',
+			'css3',
+			'БЭМ',
+			'SCSS',
+			'gulp',
+			'webpack',
+			'vanillaJS',
+			'react',
+			'redux',
+			'jquery',
+			'git',
+			'git-flow'
+		];
+	section.section-info
+		.paper-card-info
+			img.paper-card-info__avatar(src="/images/avatar.png" alt="avatar")
+			.paper-card-info__wrap-inputs#infoInputs
+				+input({id: "infoName", placeholder: "имя"})
+				+input({id: "infoDob", placeholder: "дата рождения"})
+				+input({id: "infoCity", placeholder: "город"})
+				+input({id: "infoContacts", placeholder: "контактные данные"})
+				img.stamp#infoStamp(src="/images/stamp.png" alt="stamp")
+		.paper-card-skills
+			h2.paper-card-skills__title
+				| Навыки
+			.grid-x#skills
+				.cell.small-6.medium-3.large-3.column-skills-checkboxes
+					each checkbox in checkboxes.slice(0, 3)
+						+checkbox({ forIdLabel: checkbox })
+				.cell.small-6.medium-3.large-3.column-skills-checkboxes
+					each checkbox in checkboxes.slice(3, 6)
+						+checkbox({ forIdLabel: checkbox })
+				.cell.small-6.medium-3.large-3.column-skills-checkboxes.wrap-mobile-bottom-skills
+					each checkbox in checkboxes.slice(6, 9)
+						+checkbox({ forIdLabel: checkbox })
+				.cell.small-6.medium-3.large-3.column-skills-checkboxes.wrap-mobile-bottom-skills
+					each checkbox in checkboxes.slice(9, 12)
+						+checkbox({ forIdLabel: checkbox })
+		.grid-x.paper-card-js-level
+			.cell.small-12.medium-6.large-6.level-js-meter
+				img.level-js-meter__image-scale(src="/images/scale.png" alt="javascript scale")
+				img.level-js-meter__image-arrow#jsScaleArrow(src="/images/arrow.png" alt="arrow")
+			.cell.medium-6.large-6.level-js-counter
+				.level-js-counter__text
+					| Мой уровень владения <br/> Java Script
+				.level-js-counter__count#jsLevelCount
+					| 0
